@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 export default function SingleCocktail() {
   const { id } = useParams();
   const [loading, setLoading] = React.useState(false);
@@ -9,8 +9,9 @@ export default function SingleCocktail() {
     setLoading(true);
     async function getCollege() {
       try {
+        console.log(id);
         const response = await fetch(
-          `http://universities.hipolabs.com/search?country=Ireland&name=${id}`
+          `http://universities.hipolabs.com/search?country=Australia&name=${id}`
         );
         const collegeData = await response.json();
         if (collegeData.length > 0) {
@@ -26,7 +27,18 @@ export default function SingleCocktail() {
     getCollege();
   }, [id]);
   if (loading) {
-    return <h2 className="section-title">Loading...</h2>;
+    return (
+      <div className="row" style={{ paddingTop: "5rem" }}>
+        <div className="col-12 text-center">
+          <div
+            className="spinner-border text-secondary text-center"
+            role="status"
+          >
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    );
   }
   if (!college) {
     return <h2 className="section-title"> No college found </h2>;

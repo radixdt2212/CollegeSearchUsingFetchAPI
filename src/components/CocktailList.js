@@ -3,7 +3,18 @@ import Cocktail from "./Cocktail";
 import { v4 as uuid } from "uuid";
 export default function CocktailList({ loading, colleges }) {
   if (loading) {
-    return <h2 className="section-title">loading...</h2>;
+    return (
+      <div className="row" style={{ paddingTop: "5rem" }}>
+        <div className="col-12 text-center">
+          <div
+            className="spinner-border text-secondary text-center"
+            role="status"
+          >
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    );
   }
   if (colleges.length < 1) {
     return <h2 className="section-title">No Colleges found!!</h2>;

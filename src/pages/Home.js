@@ -11,7 +11,7 @@ export default function Home() {
     async function getColleges() {
       try {
         const response = await fetch(
-          `http://universities.hipolabs.com/search?country=Ireland&name=${searchTerm}`
+          `http://universities.hipolabs.com/search?country=Australia&name=${searchTerm}`
         );
         const colleges = await response.json();
         if (colleges) {
